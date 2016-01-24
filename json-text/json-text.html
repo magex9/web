@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>JSON Rich Text Formats</title>
+	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="jumbotron">
+	<div class="container">
+		<h1>JSON Rich Text Formats</h1>
+		<p>An example of using JSON to represent rich text.</p>
+	</div>
+</div>
+
+<div class="container">
+	
+	<h2>The Problem</h2>
+	
+	<p>In many projects that I work on, data had moved to XML documents and many of them 
+		are also transferring information as JSON as well.  When the objects were completely
+		structured and all information were in their descrete fields this was an easy mapping
+		between POJO's -> XML or JSON and all 3 are very interchangable.  However once you 
+		start using more OO syntax such as HTML Domain Objects, things are not as simple.</p>
+		
+	<p>This example attemps to come up with a notation for transforming complex html pages and
+		reports into strict JSON notation which show the semetatic information on the page
+		which could be transformed into multiple number of outputs such as HTML, PDF, Plain Text
+		Word, Excel among more.</p>
+	
+	<h2>Completely Structured XML</h2>
+	
+	<p>In many cases when xml is completely structured it is easy to move between XML and JSON 
+	however</p>
+	
+<pre>
+&lt;users&gt;
+	&lt;user id="1"&gt;
+		&lt;name&gt;Scott&lt;/name&gt;
+		&lt;email&gt;scott@somewhere.com&lt;/emal&gt;
+	&lt;/user&gt;
+	&lt;user id="2"&gt;
+		&lt;name&gt;Fiona&lt;/name&gt;
+		&lt;email&gt;fiona@somewhere.com&lt;/email&gt;
+	&lt;/user&gt;
+&lt;/users&gt;
+</pre>
+
+<pre>
+users = [{
+	id: 1,
+	name: 'Scott',
+	email: 'scott@somewhere.com'
+},{
+	id: 2,
+	name: 'Fiona',
+	email: 'fiona@somewhere.com'
+}]
+</pre>
+
+	<h2>Rich Text Format</h2>
+	
+	<p>However when this is applied to HTML, even when the standards are followed
+		almost any element can exist inside of any other element a the same display level.
+		The two main types are <em>block</em> and <em>inline</em> elements.</p>
+		
+	<p>Block level elements represented as JSON are fairly easy to map as the HTML tags
+		are fairly structured and normally are different ways to layout and associated
+		the inline elemensts.</p>
+		
+	<p>Inline elements however can take other inline elements as well as text and need 
+		to preserve the order and spacing.  This is where things become difficult.  
+		Take the following example:</p>
+	
+<pre>
+&lt;p&gt;This is &lt;em&gt;important&lt;/em&gt; text.&lt;/p&gt;
+</pre>
+
+	<p>Wikis have solved this by having a simplified version of text that can be displayed
+		on the page called markdown.  Putting astrix's around the important would
+		make it show up as bold on a webpage.  However what if extra styling is required or
+		two paragraphs should be place i two different spots.  The markdown simplification
+		can handle these extra elements.</p>
+		
+<pre>
+This is *important* text.
+</pre>
+
+	<p>An example json notation of the above could be the following where all the important elements
+		are preserved such as are the spacing between the important text.</p>
+		
+<pre>
+[{
+	type: 'paragraph',
+	type: 'block',
+	items: [{
+		type: 'text',
+		items: ['This is important ']
+	},{
+		type: 'em',
+		type: 'inline',
+		items: [{
+			type: 'text',
+			items: ['important']
+		}]
+	},{
+		type: 'text',
+		items: [' text.']
+	}]
+}]
+</pre>
+
+	<p>This version of the json object is very verbose but easy for a framework to parse and create
+		thier own view of the information.  However some of this information can be condensed down if 
+		we know some of this will happen alot or could be derived.</p>
+		
+	<p>Since we can create a schema of all the element, and each one of them either an inline or block
+		element, we can eliminate this from the configuration.  This will get rid of all of the 'type'
+		attributes.  We can also turn all of the 'text' objects into just strings to keep things more
+		readable.  If a basic string is place in a block level configuration element, it should be 
+		concidered a paragraph.</p>
+		
+<pre>
+[{
+	type: 'paragraph',
+	items: ['This is important ',{type: 'em', items: ['important']},' text.']
+}]
+</pre>
+
+<section>
+	<h2>Complex Section</h2>
+	<p>This is an example of a complex section</p>
+	<p>The test <em class="label label-success">Passed!</em>.</p>
+	<p><a href="#">View the results</a>; 1 pass, 0 failures.</p>
+</section>
+
+<pre>
+&lt;section&gt;
+	&lt;h2&gt;Complex Section&lt;/h2&gt;
+	&lt;p&gt;This is an example of a complex section&lt;/p&gt;
+	&lt;p&gt;The test &lt;em class="success"&gt;Passed!&lt;/em&gt;.&lt;/p&gt;
+	&lt;p&gt;&lt;a href="#"&gt;View the results&lt;/a&gt;; 1 pass, 0 failures.&lt;/p&gt;
+&lt;/section&gt;
+</pre>
+
+<pre>
+[{
+	type: 'section',
+	title: 'Complex Section',
+	items: [{
+		type: 'paragraph',
+		items: ['This is an example of a complex section']
+	},{
+		type: 'paragraph',
+		items: ['The test', {
+			type: 'em',
+			class: 'success',
+			items: ['Passed!']
+		},'.']
+	},{
+		type: 'paragraph',
+		items: [{
+			type: 'a',
+			href: '#',
+			items: ['View the results']
+		},'; 1 pass, 0 failures.']
+	}]
+}]
+</pre>
+
+</div>
+</body>
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</html>
