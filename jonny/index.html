@@ -1,46 +1,18 @@
-<!DOCTYPE html>
-<!-- saved from url=(0105)http://pickem.johnnuy.org/editPicks?entry_id=5503835233583104&gameday_id=4864643168206848&redirectUrl=%2F -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
-		<title>Saturday Pickem Pool - Edit Picks</title>
-		
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Saturday Pickem Pool by Johnnuy">
-<meta name="author" content="Johnnuy">
-<link href="bootstrap.min.css" rel="stylesheet">
-<link href="johnnuy.css" rel="stylesheet">
-<link href="pickem.css" rel="stylesheet">
-<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+<html lang="en">
+<head>
+	<title>Saturday Pickem Pool - Edit Picks</title>
 </head>  
-	<body>
-		
-
-
-
-
-
-				<h2>Edit Picks for<br>Saturday, January 14th, 2017</h2>
-				Pick Cutoff Time: 01:00 PM EST
-				<form class="form-signin form-picks" onsubmit="editPicks.disabled=true; return true;" action="http://pickem.johnnuy.org/editPicks?entry_id=5503835233583104&amp;gameday_id=4864643168206848&amp;redirectUrl=%2F" method="POST"><input type="hidden" name="form.model.class" value="org.johnnuy.pickem.web.model.PickSelectionContainer"><input type="hidden" name="form.model.binding" value="container"><input type="hidden" name="model.entryId" value="5503835233583104"><input type="hidden" name="model.gameDayId" value="4864643168206848">
-					
-					<div class="form-label">Bonus Game:</div>			
-					<select class="form-control" name="model.bonusGameId">
-						<option value="" selected="" label=""></option>
-						<option value="4668002385526784" label="St. Louis @ San Jose">St. Louis @ San Jose</option>
-						<option value="4672220043411456" label="Columbus @ Florida"></option>
-						<option value="4732109067386880" label="Anaheim @ Arizona">Anaheim @ Arizona</option>
-						<option value="4938387756679168" label="Nashville @ Colorado"></option>
-						<option value="5135032834326528" label="Calgary @ Edmonton"></option>
-						<option value="5329023622184960" label="Winnipeg @ Los Angeles"></option><option value="5379983409152000" label="Rangers @ Montreal"></option><option value="5971267261825024" label="Toronto @ Ottawa"></option><option value="6009591255007232" label="Pittsburgh @ Detroit"></option><option value="6473924464345088" label="Islanders @ Carolina"></option><option value="6559445853143040" label="Minnesota @ Dallas"></option><option value="6561696416006144" label="Philadelphia @ Boston"></option></select><br>&nbsp;<br>
-          			<input class="btn btn-lg btn-primary btn-block" name="editPicks" type="submit" value="Save Selections"></form><form class="form-signin form-picks" onsubmit="randomizePicks.disabled=true; return true;" action="http://pickem.johnnuy.org/randomizePicks?entry_id=5503835233583104&amp;gameday_id=4864643168206848&amp;redirectUrl=%2F" method="POST"><input type="hidden" name="form.model.class" value="org.johnnuy.pickem.web.model.RandomPickContainer"><input type="hidden" name="form.model.binding" value="rContainer"><input type="hidden" name="model.entryId" value="5503835233583104"><input type="hidden" name="model.gameDayId" value="4864643168206848"><input class="btn btn-lg btn-primary btn-block" name="randomizePicks" type="submit" value="I&#39;m Feeling Lucky">
-					</form><hr>
-
-
-<script src="jquery.min.js"></script>
-<script src="bootstrap.min.js"></script>
-<script src="pickem.js"></script>
+<body>
+	<form class="form-signin form-picks" onsubmit="editPicks.disabled=true; return true;" action="http://pickem.johnnuy.org/editPicks?entry_id=5503835233583104&amp;gameday_id=4864643168206848&amp;redirectUrl=%2F" method="POST">
+	<select class="form-control" name="model.bonusGameId">
+		<option value="" selected="" label="">Select One</option>
+		<option value="4668002385526784" label="St. Louis @ San Jose">St. Louis @ San Jose</option>
+		<option value="4732109067386880" label="Anaheim @ Arizona">Anaheim @ Arizona</option>
+	</select>
+	<select class="form-control" name="model.bonusGameId">
+		<option value="4938387756679168" label="Nashville @ Colorado"></option>
+		<option value="5135032834326528" label="Calgary @ Edmonton"></option>
+		<option value="5329023622184960" label="Winnipeg @ Los Angeles"></option>
+	</select>
+</form>
 </body></html>
