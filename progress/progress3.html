@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Readonly Example</title>
+	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<div class="jumbotron">
+	<div class="container">
+		<h1>Progress Bar</h1>
+		<p>An example to a progress bar done in bootstrap.</p>
+	</div>
+</div>
+
+<div class="container">
+	
+    <ul class="steps">
+      <li class="step col-xs-3">
+        <a class="step-segment" href="progress.html">
+          <span class="step-icon fa fa-envelope"></span>
+        </a>
+        <div class="step-content">
+          <strong class="hidden-xs">Access Code</strong>
+        </div>
+      </li>
+      <li class="step col-xs-3">
+        <a class="step-segment" href="progress2.html">
+          <span class="step-icon fa fa-at"></span>
+        </a>
+        <div class="step-content">
+          <strong class="hidden-xs">Contact Information</strong>
+        </div>
+      </li>
+      <li class="step col-xs-3 active">
+        <a class="step-segment" href="progress3.html">
+          <span class="step-icon fa fa-gavel"></span>
+        </a>
+        <div class="step-content">
+          <strong class="hidden-xs">User Agreement</strong>
+        </div>
+      </li>
+      <li class="step col-xs-3">
+        <a class="step-segment" href="progress4.html">
+          <span class="step-icon fa fa-user"></span>
+        </a>
+        <div class="step-content">
+          <strong class="hidden-xs">Finished</strong>
+        </div>
+      </li>
+    </ul>
+
+</div>
+</body>
+
+<style>
+
+
+.steps {
+    list-style: none;
+    margin-bottom: 0;
+    padding-left: 0
+}
+.steps:after,
+.steps:before {
+    content: " ";
+    display: table
+}
+.steps:after {
+    clear: both
+}
+.step {
+    color: #2c3e50;
+    display: block;
+    padding: 0;
+    text-align: center
+}
+.step-segment {
+    display: block;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    position: relative
+}
+.step-segment:after {
+    background-color: #2c3e50;
+    content: "";
+    display: block;
+    height: 2px;
+    position: absolute;
+    right: 50%;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 100%
+}
+.step:first-child .step-segment:after {
+    display: none
+}
+.step-icon {
+    background-color: #2c3e50;
+    border: 2px solid #2c3e50;
+    border-radius: 50%;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    color: #fff;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    z-index: 2;
+    display: inline-block;
+    font-size: 24px;
+    height: 48px;
+    line-height: 48px;
+    text-align: center;
+    width: 48px
+}
+.step.active .step-icon {
+    background-color: #fff;
+    color: #2c3e50
+}
+.step.active~.step .step-segment:after {
+    background-color: #6185a8
+}
+.step.active~.step .step-icon {
+    background-color: #6185a8;
+    border-color: #6185a8;
+    color: #fff
+}
+
+</style>
+
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</html>
