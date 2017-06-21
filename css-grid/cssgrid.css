@@ -1,0 +1,134 @@
+@import 'batman.css';
+@import 'grid.css';
+@import 'definitions.css';
+
+.grid {
+	margin: 0 auto;
+	grid-template-rows: auto auto 2em;
+}
+
+.grid > header {
+	background-color: #aaf;
+	grid-column: 1;
+	grid-row: 1;
+	
+	position: relative;
+	display: grid;
+}
+
+.grid > header > h1 {
+	grid-column: 2;
+	grid-row: 2;
+	
+	font-size: 500%;
+	margin: 0;
+	padding: 0;
+}
+
+.grid > header > p {
+	
+	grid-column: 1;
+	grid-row: 1;
+
+	margin: 0;
+	padding: 10px;
+	
+}
+
+.authentication {
+	background-color: #cfc;
+	width: 400px;
+	grid-column: 2;
+	grid-column-end: span 2;
+	grid-row: 1;
+}
+
+.authentication h1 {
+	display: none;
+}
+
+.authentication form {
+	display: grid;
+}
+
+.authentication .actions {
+	background-color: #dfd;
+	grid-column: 2;
+	grid-row: 1;
+	grid-row-end: span 2;
+}
+
+.authentication .actions button {
+	height: 100%;
+	width: 100%;
+	
+}
+
+.field {
+	display: grid;
+	grid-column: 1;
+}
+
+.field .info {
+	grid-column: 1;
+	grid-column-end: span 2;
+	grid-row: 1;
+	border: 1px solid #aaf;
+	border-left: 20px solid #aaf;
+	background-color: #ddf;
+	margin: 0;
+	padding: 5px;
+}
+
+.field input {
+	grid-column: 1;
+	grid-row: 2;
+	padding: 10px;
+	margin: 10px;
+}
+
+.field label {
+	grid-column: 2;
+	grid-row: 2;
+	margin: 10px;
+	padding: 10px;
+	font-weight: bold;
+}
+
+
+.introduction {
+	background-color: #ccf;
+	padding: 10px;
+	grid-column: 1;
+	grid-column-end: span 2;
+	grid-row: 2;
+}
+
+.information {
+	grid-column: 3;
+	grid-row: 2;
+	grid-row-end: span 2;
+	align-content: stretch;
+
+	background-color: #fcc;
+	padding: 10px;
+
+}
+
+.grid > footer {
+
+	grid-column-start: 1;
+	grid-column-end: 3;
+	grid-row: 3;
+	align-content: end;
+
+	background-color: #007;
+	font-weight: bold;
+	color: white;
+}
+
+.grid > footer > p {
+	margin: 0.5em auto;
+	text-align: center;
+}
+
