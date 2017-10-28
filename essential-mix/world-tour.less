@@ -47,6 +47,7 @@ article {
 	header {
 		margin: 0;
 		padding: 0;
+		margin-bottom: 10px;
 		background-color: @accent-color;
 		
 		h2 {
@@ -81,6 +82,59 @@ article {
 			
 		}
 		
+	}
+	
+}
+
+article > dl {
+	
+	margin: 0px 10px 0px 10px;
+	float: left; 
+	clear: left;
+	
+	dt {
+		display: none;
+	}
+	
+	dd {
+		padding: 0;
+		margin: 0;
+		display: inline;
+	}
+	
+	dd.track:after {
+		content: '. ';
+	}
+	
+	dd.track {
+		color: #999;
+		font-size: x-small;
+	}
+	
+	dd.artist:after {
+		content: ' - ';
+	}
+	
+	dd.artist {
+		color: @dark-color;
+		font-weight: bold;
+	}
+	
+	dd.song {
+		color: @dark-color;
+	}
+	
+	dd.remix:before {
+		content: '(';
+	}
+	
+	dd.remix:after {
+		content: ')';
+	}
+	
+	dd.remix {
+		color: @light-color;
+		font-size: smaller;
 	}
 	
 }
