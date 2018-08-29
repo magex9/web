@@ -1,0 +1,116 @@
+Functions dont require a list of parameters passed into the function..
+
+var foo = function(a) {
+	var arg1 = arguments[0]; // this is the same as the first parameter
+	assertTrue(a === arg1);
+}
+
+var test = function() {
+	throw "This is an exception";
+}
+
+try {
+	console.log(test());
+} catch(ex) {
+	console.log(ex);
+} finally {
+	console.log("Finally");
+}
+
+
+var str = "greet";
+
+var shout = function() {
+	console.log(this.toUpperCase());
+}
+
+// Call a specific method a certain class
+shout.call(str);
+// Functions in javascript really are objects
+// and Object are really just functions.
+// This is why the dot notation is able to be used on the function.
+
+var shout2 = function(name) {
+	console.log(this.toUpperCase() + " " + name);
+}
+
+shout.call(str, "Scott");
+shout.apply(str, ["Scott", "Jim"]);
+
+
+
+
+
+var Car = function(year) {
+    this.year = year;
+    this.miles = 0;
+}
+
+Car.prototype.drive = function(dist) {
+    console.log("Driveing...");
+    this.miles += dist;
+}
+
+Car.prototype.turn = function() {
+    console.log("Turning...");
+}
+
+var car1 = new Car(2011);
+car1.drive(10);
+car1.turn();
+car1.drive(20);
+
+
+
+
+
+
+
+
+
+var createClass = function(constr, Base, methods) {
+    if (Base !== null) {
+        var prototype = new Base();
+        constr.prototype = prototype;
+        constr.prototype.super = function(methodName, parameters) {
+            prototype[methodName].apply(this, parameters);
+        }
+    }
+    for (method in methods) {
+        constr.prototype[method] = methods[method];
+    }
+    return constr;
+}
+
+var Vehicle = createClass(function() {},
+null,
+{
+    turn: function(dir) {
+        console.log("Vehicle.turn");
+    }
+});
+
+var Car = createClass(function(year) {
+    this.year = year;
+    this.miles = 0;
+}, Vehicle, {
+    drive: function(dist) {
+        console.log("Driving...");
+    },
+    turn: function(dir) {
+        console.log("Car turn");
+        //Vehicle.prototype.turn.call(this, dir);
+        this.super('turn', [dir]);
+    }
+});
+
+Car.prototype = new Vehicle();
+
+var v = new Vehicle();
+v.turn();
+
+var car1 = new Car(2011);
+car1.drive(10);
+car1.turn();
+car1.drive(20);
+
